@@ -1,0 +1,15 @@
+ //Multiple Record Snippet
+            UserViewModel model = new UserViewModel();
+            model = db.CS_Users_JR
+                         .Where(x => x.Lan_Id == userid)
+                         .Select(x => new UserViewModel
+                         {
+                             FirstName = x.FirstName,
+                             LastName = x.LastName,
+                             EmailAddress = x.Email,
+                             EmployeeID = x.Employee_Id,
+                             Lan_Id = x.Lan_Id,
+                             IsManager = x.MgrFlag.ToString(),
+                             Role = userRole,
+                         }).FirstOrDefault();
+            return View(model);
